@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Condos.Entities.Condominio>
+
+@{
+    ViewBag.Title = "Crear Condominio";
+}
+
+<h2>Mantenimiento de Condominios</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ubicacion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.CondoID }) |
+           
+            
+        </td>
+    </tr>
+}
+
+</table>
