@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using Condos.Views;
 using Xamarin.Forms;
 
 namespace Condos
@@ -13,7 +9,7 @@ namespace Condos
         {
             InitializeComponent();
 
-            MainPage = new Condos.MainPage();
+            MainPage = new NavigationPage(new LoginView());
         }
 
         protected override void OnStart()
