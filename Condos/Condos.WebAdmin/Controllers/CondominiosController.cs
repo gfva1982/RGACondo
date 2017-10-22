@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Condos.Entities;
 using Condos.WebAdmin.Models;
 
 namespace Condos.WebAdmin.Controllers
 {
+    
     public class CondominiosController : Controller
     {
         private DataContextLocal db = new DataContextLocal();
@@ -48,7 +46,7 @@ namespace Condos.WebAdmin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CondoID,Descripcion,Estado,Ubicacion")] Condominio condominio)
+        public async Task<ActionResult> Create(Condominio condominio)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +78,7 @@ namespace Condos.WebAdmin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CondoID,Descripcion,Estado,Ubicacion")] Condominio condominio)
+        public async Task<ActionResult> Edit( Condominio condominio)
         {
             if (ModelState.IsValid)
             {

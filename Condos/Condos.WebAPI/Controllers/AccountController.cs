@@ -19,7 +19,7 @@ using Condos.WebAPI.Results;
 
 namespace Condos.WebAPI.Controllers
 {
-    [Authorize]
+    [Authorize(Users ="gvega@gxsolutions.com")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {

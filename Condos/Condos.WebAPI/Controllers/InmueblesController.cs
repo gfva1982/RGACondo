@@ -13,6 +13,7 @@ using Condos.Entities;
 
 namespace Condos.WebAPI.Controllers
 {
+    [Authorize]
     public class InmueblesController : ApiController
     {
         private DataContext db = new DataContext();

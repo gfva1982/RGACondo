@@ -17,11 +17,14 @@ namespace Condos.Entities
         [Display(Name ="Descripción")]
         public string Descripcion { get; set; }
 
+        public string Image { get; set; }
+
         [Required(ErrorMessage = "El campo {0} is required.")]
         [Display(Name = "Es Público")]
         public bool EsPublico { get; set; }
                
         [Required(ErrorMessage = "El campo {0} is required.")]
+        [Display(Name ="Habilitado")]
         public bool Estado { get; set; }
 
       

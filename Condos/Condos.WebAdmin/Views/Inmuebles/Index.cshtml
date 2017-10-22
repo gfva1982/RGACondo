@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Condos.Entities.Inmueble>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Crear Inmuebles por Condominio";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create",new { },new {@class="btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -20,6 +20,11 @@
         <th>
             @Html.DisplayNameFor(model => model.EsPublico)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -40,6 +45,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.EsPublico)
         </td>
+
+       <td>
+           @if (!string.IsNullOrEmpty(item.Image))
+           {
+               <img src="@Url.Content(item.Image)" alt="Image" style="width:100px; height:150px; max-width: 100%; height:auto" />
+           }
+       </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
@@ -47,9 +60,8 @@
             @Html.DisplayFor(modelItem => item.Comentario)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.InmuebleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.InmuebleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InmuebleID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.InmuebleID}, new {@class = "btn btn-warning" }) 
+            
         </td>
     </tr>
 }

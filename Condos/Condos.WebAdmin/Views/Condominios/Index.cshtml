@@ -7,7 +7,7 @@
 <h2>Mantenimiento de Condominios</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.Ubicacion)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.CondoID }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.CondoID }, new { @class = "btn btn-warning" }) 
            
             
         </td>
