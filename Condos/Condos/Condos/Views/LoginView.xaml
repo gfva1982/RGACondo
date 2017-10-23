@@ -3,20 +3,110 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="Condos.Views.LoginView"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="Login">
+    Title="Login"
+    Padding="20"
+    BackgroundColor="#BFA288">
 
     
 	<ContentPage.Content>
         <StackLayout 
             BindingContext="{Binding Login}"
-            Padding="8">
+            Padding="8"
+            Spacing="20"
+            BackgroundColor="#F2F1DF">
             <Label
+                TextColor="#BFA288"
                 FontAttributes="Bold"
                 FontSize="Large"
                 HorizontalOptions="Center"
                 Text="Condominio">
-
             </Label>
+
+            <Grid
+                Margin="5,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="Email:">
+                </Label>
+                <Entry
+                    Placeholder="Ingrese el Email"
+                    Keyboard="Email"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text="{Binding Email, Mode = TwoWay}"
+                ></Entry>
+
+                 <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="1"
+
+                    Text="Password:">
+                </Label>
+                <Entry
+                    Placeholder="Ingrese el Email"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    IsPassword="true"
+                    Text="{Binding Password, Mode = TwoWay}"
+                ></Entry>
+
+                 <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="2"
+                    Text="Recordarme">
+
+                </Label>
+
+                <Switch
+                    Grid.Column="1"
+                    
+                    Grid.Row="2"
+                    IsToggled="{Binding IsToggled, Mode=TwoWay}">
+                </Switch>
+            </Grid>
+
+            <Label
+                HorizontalOptions="Center"
+                TextColor="Blue"
+                Text="Recuperar Contraseña">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RecoverPasswordCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+
+
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
+            </ActivityIndicator>
+
+            <Button
+                Command="{Binding LoginCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,25"
+                BackgroundColor="Navy"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Login"
+                TextColor="White">
+            </Button>
+            
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
