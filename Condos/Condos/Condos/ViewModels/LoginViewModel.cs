@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Condos.Services;
+using Xamarin.Forms;
+using Condos.Views;
 
 namespace Condos.ViewModels
 {
@@ -145,6 +147,28 @@ namespace Condos.ViewModels
                 return;
             }
 
+            IsRunning = true;
+            IsEnabled = false;
+
+            //var connection = await apiService.CheckConnection();
+           // if (connection.IsSuccess)
+           // {
+            //    IsRunning = false;
+            //     IsEnabled = true;
+            //     await dialogService.ShowMessage("Error", connection.Message);
+            // }
+
+            // var response = await apiService.GetToken("http", Email, Password);
+
+            // if (response ==null)
+            // {
+            //     IsRunning = false;
+            //      IsEnabled = true;
+            //     await dialogService.ShowMessage("Error", "Ocurrió un error inesperado. Invente más tarde");
+            //  }
+
+
+            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalView());
 
         }
 
