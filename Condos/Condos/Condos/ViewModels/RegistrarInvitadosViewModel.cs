@@ -1,14 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using Condos.Services;
-using Xamarin.Forms;
 using Condos.Views;
+using GalaSoft.MvvmLight.Command;
+using Xamarin.Forms;
 
 namespace Condos.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class RegistrarInvitadosViewModel : INotifyPropertyChanged
     {
         #region Properties
 
@@ -68,58 +68,112 @@ namespace Condos.ViewModels
         }
 
 
-        public string Password
+        public string Nombre
         {
             get
             {
-                return _password;
+                return _nombre;
             }
             set
             {
-                if (_password != value)
+                if (_nombre != value)
                 {
-                    _password = value;
+                    _nombre = value;
                     PropertyChanged?.Invoke(this,
-                                            new PropertyChangedEventArgs(nameof(Password)));
+                                            new PropertyChangedEventArgs(nameof(Nombre)));
 
                 }
             }
         }
 
-        public string Email
+        public string Identificacion
         {
             get
             {
-                return _email;
+                return _identificacion;
             }
             set
             {
-                if (_email != value)
+                if (_identificacion != value)
                 {
-                    _email = value;
+                    _identificacion = value;
                     PropertyChanged?.Invoke(this,
-                                            new PropertyChangedEventArgs(nameof(Email)));
+                                            new PropertyChangedEventArgs(nameof(Identificacion)));
 
                 }
             }
         }
 
+        public string Placa
+        {
+            get
+            {
+                return _placa;
+            }
+            set
+            {
+                if (_placa != value)
+                {
+                    _placa = value;
+                    PropertyChanged?.Invoke(this,
+                                            new PropertyChangedEventArgs(nameof(Placa)));
+
+                }
+            }
+        }
+
+
+        public DateTime Fecha
+        {
+            get
+            {
+                return _fecha;
+            }
+            set
+            {
+                if (_fecha != value)
+                {
+                    _fecha = value;
+                    PropertyChanged?.Invoke(this,
+                                            new PropertyChangedEventArgs(nameof(Fecha)));
+
+                }
+            }
+        }
 
 
 
         #endregion
 
         #region Attributes
-        string _email;
-
-        string _password;
+        string _nombre;
+        string _placa;
+        string _identificacion;
+        DateTime _fecha;
 
         bool _isToggled;
         bool _isEnabled;
         bool _isRunning;
 
+       
 
 
+
+        #endregion
+
+        #region Constructors
+        public RegistrarInvitadosViewModel()
+        {
+            IsEnabled = true;
+            IsToggled = true;
+            Fecha = DateTime.Now;
+
+        }
+
+        #endregion
+
+        #region Eventos
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Services
@@ -128,25 +182,25 @@ namespace Condos.ViewModels
         #endregion
 
         #region Commands
-        public ICommand LoginCommand
+        public ICommand AgregarInvitadoCommand
         {
             get
             {
-                return new RelayCommand(Login);
+                return new RelayCommand(AgregarInvitado);
             }
         }
 
-        private async void Login()
+        private async void AgregarInvitado()
         {
-            if (string.IsNullOrEmpty(Email))
+            if (string.IsNullOrEmpty(Nombre))
             {
-                await dialogService.ShowMessage("Error", "Debe de ingresar un email valido");
+                await dialogService.ShowMessage("Error", "Debe de ingresar un nombre");
                 return;
             }
 
-            if (string.IsNullOrEmpty(Password))
+            if (string.IsNullOrEmpty(Identificacion))
             {
-                await dialogService.ShowMessage("Error", "Debe de ingresar un password");
+                await dialogService.ShowMessage("Error", "Debe de ingresar una identificacion");
                 return;
             }
 
@@ -156,62 +210,28 @@ namespace Condos.ViewModels
             var connection = await apiService.CheckConnection();
             if (!connection.IsSuccess)
             {
-               IsRunning = false;
-                IsEnabled = true;
-                 await dialogService.ShowMessage("Error", connection.Message);
-                return;
-            }
-
-            var response = await apiService.GetToken("http://condoscrwebapi.azurewebsites.net", Email, Password);
-
-             if (response == null)
-             {
-                 IsRunning = false;
-                 IsEnabled = true;
-                 await dialogService.ShowMessage("Error", "Ocurrió un error inesperado. Invente más tarde");
-                Email = string.Empty;
-                Password = string.Empty;
-                return;
-             }
-
-            if (string.IsNullOrEmpty(response.AccessToken))
-            {
                 IsRunning = false;
                 IsEnabled = true;
-                await dialogService.ShowMessage("Error", response.ErrorDescription);
-                Email = string.Empty;
-                Password = string.Empty;
+                await dialogService.ShowMessage("Error", connection.Message);
                 return;
             }
 
-            var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.Principal = new PrincipalViewModel();
+            //var response = await apiService.GetToken("http://condoscrwebapi.azurewebsites.net", Email, Password);
 
-            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalView());
-            Email = null;
-            Password = null;
 
+           
+            Nombre = null;
+            Identificacion = null;
+            Placa = null;
+            Fecha = DateTime.Now;
             IsRunning = false;
             IsEnabled = true;
+
+            return;
         }
 
 
         #endregion
 
-        #region Contructors
-        public LoginViewModel()
-        {
-            IsEnabled = true;
-            IsToggled = true;
-            dialogService = new DialogService();
-            apiService = new ApiService();
-            Email = "gvega@gxsolutions.com";
-            Password = "Sdfx2028";
-        }
-        #endregion
-
-        #region Eventos
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
     }
 }

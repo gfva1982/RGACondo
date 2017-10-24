@@ -51,6 +51,12 @@
     </Compile>
     <Compile Include="ViewModels\PrincipalViewModel.cs" />
     <Compile Include="Services\ApiService.cs" />
+    <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\TokenResponse.cs" />
+    <Compile Include="Views\RegistrarInvitadosView.xaml.cs">
+      <DependentUpon>RegistrarInvitadosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\RegistrarInvitadosViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -61,6 +67,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PrincipalView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RegistrarInvitadosView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -110,6 +119,7 @@
     <Folder Include="Infrastructure\" />
     <Folder Include="Views\" />
     <Folder Include="Services\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

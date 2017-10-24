@@ -11,7 +11,7 @@
     
 	<ContentPage.Content>
          <StackLayout 
-            BindingContext="{Binding Login}"
+            BindingContext="{Binding Principal}"
 
             BackgroundColor="#F2F1DF">
 
@@ -22,8 +22,9 @@
                 HorizontalOptions="Center"
                 Text="Condominio">
             </Label>
-            
-             <Button
+
+            <StackLayout>
+            <Button
                 Command="{Binding RegistrarVisitanteCommand}"
                 IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                 Margin="50,10"
@@ -78,7 +79,10 @@
                 TextColor="White"
                 >
             </Button>
-            
             </StackLayout>
+
+            </StackLayout>
+
+        
 	</ContentPage.Content>
 </ContentPage>
