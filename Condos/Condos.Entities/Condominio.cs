@@ -12,7 +12,7 @@ namespace Condos.Entities
 
         [Required(ErrorMessage = "El campo {0} is required.")]
         [MaxLength(500,ErrorMessage ="Excedió el tamaña máximo permitido")]
-        [Index("Condominio_Descripcion_Index",IsUnique =true)]
+        [Index("Condominio_Descripcion_Index", IsUnique = true)]
         [Display(Name ="Descripción")]
         public string Descripcion { get; set; }
 
@@ -25,6 +25,10 @@ namespace Condos.Entities
 
         [JsonIgnore]
         public virtual ICollection<Inmueble> Inmuebles { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<RegistroDeAcceso> RegistrosdeAccesos { get; set; }
+
 
     }
 }

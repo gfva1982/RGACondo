@@ -140,26 +140,7 @@ namespace Condos.WebAdmin.Controllers
             return View(view);
         }
 
-        //// GET: Inmuebles/Delete/5
-        //public async Task<ActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-
-
-        //    var inmueble = await db.Inmuebles.FindAsync(id);
-        //    if (inmueble == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    var view = ToView(inmueble);
-
-        //    return View(view);
-        //}
-
+      
         private InmuebleView ToView(Inmueble inmueble)
         {
             return new InmuebleView

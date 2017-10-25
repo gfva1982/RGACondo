@@ -198,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegistroDeAccesoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -298,6 +299,11 @@
     <Content Include="Views\Inmuebles\Details.cshtml" />
     <Content Include="Views\Inmuebles\Edit.cshtml" />
     <Content Include="Views\Inmuebles\Index.cshtml" />
+    <Content Include="Views\RegistroDeAccesoes\Create.cshtml" />
+    <Content Include="Views\RegistroDeAccesoes\Delete.cshtml" />
+    <Content Include="Views\RegistroDeAccesoes\Details.cshtml" />
+    <Content Include="Views\RegistroDeAccesoes\Edit.cshtml" />
+    <Content Include="Views\RegistroDeAccesoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

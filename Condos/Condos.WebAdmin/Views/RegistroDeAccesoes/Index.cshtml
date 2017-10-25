@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Condos.Entities.RegistroDeAcceso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Condominio.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreInvitado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlacaVehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaAcceso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionInmueble)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreAutoriza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioValidaAcceso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaSalida)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Condominio.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreInvitado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Identificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlacaVehiculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaAcceso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionInmueble)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreAutoriza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioValidaAcceso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comentarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaSalida)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RegistroID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RegistroID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RegistroID })
+        </td>
+    </tr>
+}
+
+</table>

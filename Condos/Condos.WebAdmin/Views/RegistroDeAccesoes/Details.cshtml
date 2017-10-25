@@ -1,0 +1,106 @@
+﻿@model Condos.Entities.RegistroDeAcceso
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RegistroDeAcceso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Condominio.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Condominio.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreInvitado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreInvitado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlacaVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlacaVehiculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaAcceso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAcceso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionInmueble)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionInmueble)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreAutoriza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreAutoriza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioValidaAcceso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioValidaAcceso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comentarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaSalida)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RegistroID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

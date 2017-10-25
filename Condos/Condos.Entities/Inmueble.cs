@@ -34,5 +34,7 @@ namespace Condos.Entities
 
         [JsonIgnore]
         public virtual Condominio Condominio { get; set; }
+
+      
     }
 }
