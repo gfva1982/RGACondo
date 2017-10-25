@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Condos.Views.PrincipalView"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Principal"
+    Padding="20"
+    BackgroundColor="#BFA288">
+
+    
+	<ContentPage.Content>
+         <StackLayout 
+            BindingContext="{Binding Principal}"
+
+            BackgroundColor="#F2F1DF">
+
+             <Label
+                TextColor="#BFA288"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Condominio">
+            </Label>
+
+            <StackLayout>
+            <Button
+                Command="{Binding RegistrarVisitanteCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,10"
+                BackgroundColor="#D95622"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Registrar Visitante"
+                TextColor="White"
+                >
+            </Button>
+
+             <Button
+                Command="{Binding ConsultaAreasCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,10"
+                BackgroundColor="#ADD96C"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Consulta de Áreas"
+                TextColor="White"
+                >
+            </Button>
+
+            <Button
+                Command="{Binding InvitadosAutorizadosCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,10"
+                BackgroundColor="#07A6A7"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Invitados Autorizados"
+                TextColor="White"
+                >
+            </Button>
+
+             <Button
+                Command="{Binding ActualizarDatosCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,10"
+                BackgroundColor="#4A89AA"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Actualizar Datos"
+                TextColor="White"
+                >
+            </Button>
+            </StackLayout>
+
+            </StackLayout>
+
+        
+	</ContentPage.Content>
+</ContentPage>

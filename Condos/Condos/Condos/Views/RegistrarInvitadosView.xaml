@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Condos.Views.RegistrarInvitadosView"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Agregar Invitados"
+    Padding="20"
+    BackgroundColor="#BFA288">
+	<ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding RegistrarInvitados}"
+             
+            BackgroundColor="#F2F1DF">
+
+             <Label
+                TextColor="#BFA288"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Registre un invitado">
+            </Label>
+
+            <Grid
+                Margin="5,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                   
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="Nombre:">
+                </Label>
+                <Entry
+                    Placeholder="Nombre Completo"
+                    Keyboard="Email"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text="{Binding Nombre, Mode = TwoWay}"
+                ></Entry>
+
+                 <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="1"
+
+                    Text="Cédula:">
+                </Label>
+                <Entry
+                    Placeholder="# Cédula"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="{Binding Identificacion, Mode = TwoWay}"
+                ></Entry>
+
+                <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="2"
+
+                    Text="Placa:">
+                </Label>
+                <Entry
+                    Placeholder="# Placa Vehículo"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="{Binding Placa, Mode = TwoWay}"
+                ></Entry>
+
+                 <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="3"
+
+                    Text="Fecha:">
+                </Label>
+                <DatePicker
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Format="dd/MM/yyyy"
+                    Date="{Binding Fecha, Mode = TwoWay}">
+                </DatePicker>
+
+                 <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="4"
+                    Text="Recordar">
+
+                </Label>
+
+                <Switch
+                    Grid.Column="1"
+                    
+                    Grid.Row="4"
+                    IsToggled="{Binding IsToggled, Mode=TwoWay}">
+                </Switch>
+
+                
+
+                
+                </Grid>
+
+
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
+            </ActivityIndicator>
+
+            <Button
+                VerticalOptions="EndAndExpand"
+                Command="{Binding AgregarInvitadoCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,25"
+                BackgroundColor="Navy"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Agregar Invitado"
+                TextColor="White">
+            </Button>
+               
+            
+            
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

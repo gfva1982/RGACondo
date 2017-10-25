@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Condos.Services;
+using Xamarin.Forms;
+using Condos.Views;
 
 namespace Condos.ViewModels
 {
@@ -116,10 +118,13 @@ namespace Condos.ViewModels
         bool _isEnabled;
         bool _isRunning;
 
+
+
         #endregion
 
         #region Services
         DialogService dialogService;
+        ApiService apiService;
         #endregion
 
         #region Commands
@@ -145,7 +150,49 @@ namespace Condos.ViewModels
                 return;
             }
 
+            IsRunning = true;
+            IsEnabled = false;
 
+            var connection = await apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+               IsRunning = false;
+                IsEnabled = true;
+                 await dialogService.ShowMessage("Error", connection.Message);
+                return;
+            }
+
+            var response = await apiService.GetToken("http://condoscrwebapi.azurewebsites.net", Email, Password);
+
+             if (response == null)
+             {
+                 IsRunning = false;
+                 IsEnabled = true;
+                 await dialogService.ShowMessage("Error", "Ocurrió un error inesperado. Invente más tarde");
+                Email = string.Empty;
+                Password = string.Empty;
+                return;
+             }
+
+            if (string.IsNullOrEmpty(response.AccessToken))
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await dialogService.ShowMessage("Error", response.ErrorDescription);
+                Email = string.Empty;
+                Password = string.Empty;
+                return;
+            }
+
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Principal = new PrincipalViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalView());
+            Email = null;
+            Password = null;
+
+            IsRunning = false;
+            IsEnabled = true;
         }
 
 
@@ -157,6 +204,9 @@ namespace Condos.ViewModels
             IsEnabled = true;
             IsToggled = true;
             dialogService = new DialogService();
+            apiService = new ApiService();
+            Email = "gvega@gxsolutions.com";
+            Password = "Sdfx2028";
         }
         #endregion
 
