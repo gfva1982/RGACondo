@@ -6,6 +6,8 @@ using Condos.Views;
 using GalaSoft.MvvmLight.Command;
 using Xamarin.Forms;
 
+using Condos.Models;
+
 namespace Condos.ViewModels
 {
     public class RegistrarInvitadosViewModel : INotifyPropertyChanged
@@ -168,6 +170,9 @@ namespace Condos.ViewModels
             IsToggled = true;
             Fecha = DateTime.Now;
 
+            apiService = new ApiService();
+            dialogService = new DialogService();
+
         }
 
         #endregion
@@ -216,18 +221,31 @@ namespace Condos.ViewModels
                 return;
             }
 
-            //var response = await apiService.GetToken("http://condoscrwebapi.azurewebsites.net", Email, Password);
+            var response = await apiService.Post<RegistroDeAcceso>("http://condoscrwebapi.azurewebsites.net","api","/RegistroDeAccesoes",new RegistroDeAcceso{
+                CondoID = 1,
+                 FechaAcceso = Fecha,
+                 Identificacion = Identificacion,
+                 NombreInvitado = Nombre,
+                 NombreAutoriza = "Geovanny",
+                 PlacaVehiculo = Placa
+            });
+
+            if (!response.IsSuccess)
+            {
+                await dialogService.ShowMessage("Error", response.Message);
+            }
 
 
-           
-            Nombre = null;
-            Identificacion = null;
-            Placa = null;
+            await dialogService.ShowMessage("", "El registro se agregó exitosamente");
+
+            Nombre = string.Empty;
+            Identificacion = string.Empty;
+            Placa = string.Empty;
             Fecha = DateTime.Now;
             IsRunning = false;
             IsEnabled = true;
 
-            return;
+
         }
 
 

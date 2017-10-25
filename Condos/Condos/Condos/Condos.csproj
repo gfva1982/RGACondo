@@ -57,6 +57,7 @@
       <DependentUpon>RegistrarInvitadosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\RegistrarInvitadosViewModel.cs" />
+    <Compile Include="Models\RegistroDeAcceso.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
