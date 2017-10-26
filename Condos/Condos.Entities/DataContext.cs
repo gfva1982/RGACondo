@@ -17,5 +17,7 @@ namespace Condos.Entities
         }
 
         public System.Data.Entity.DbSet<Condos.Entities.RegistroDeAcceso> RegistroDeAccesoes { get; set; }
+
+        public System.Data.Entity.DbSet<Condos.Entities.Usuario> Usuarios { get; set; }
     }
 }

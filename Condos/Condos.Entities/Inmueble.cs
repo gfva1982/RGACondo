@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -35,6 +36,9 @@ namespace Condos.Entities
         [JsonIgnore]
         public virtual Condominio Condominio { get; set; }
 
-      
+        [JsonIgnore]
+        public virtual ICollection<Usuario> Usuarios { get; set; }
+
+
     }
 }

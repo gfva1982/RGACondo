@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,11 @@ namespace Condos.Entities
 
         public int InmuebleID { get; set; }
 
+        [Required(ErrorMessage = "El campo {0} is required.")]
+        [MaxLength(100, ErrorMessage = "Excedió el tamaña máximo permitido")]
+        [Index("Usuario_NombreUsuario_Index", IsUnique = true)]
+        public string NombreUsuario { get; set; }
+
         public string PrimerApellido { get; set; }
 
         public string SegundoApellido { get; set; }
@@ -25,11 +31,7 @@ namespace Condos.Entities
         public string TelefonoEmergencia { get; set; }
 
         public string Identificacion { get; set; }
-
-        public string ClaveValidacion { get; set; }
-
-        public string MyProperty { get; set; }
-
+        
         [JsonIgnore]
         public virtual Inmueble Inmueble { get; set; }
 
