@@ -185,6 +185,7 @@ namespace Condos.ViewModels
             }
 
             var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Token = response;
             mainViewModel.Principal = new PrincipalViewModel();
 
             await Application.Current.MainPage.Navigation.PushAsync(new PrincipalView());
