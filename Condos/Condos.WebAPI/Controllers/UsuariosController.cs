@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Condos.Entities;
+using Condos.WebAPI.Models;
 
 namespace Condos.WebAPI.Controllers
 {
@@ -48,7 +49,22 @@ namespace Condos.WebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(usuario);
+            var _usuarioInfo = new UsuarioInfo
+            {
+                Identificacion = usuario.Identificacion,
+                DetalleInmueble = usuario.Inmueble.Descripcion,
+                InmuebleID = usuario.InmuebleID,
+                NombreCompleto = usuario.NombreCompleto,
+                NombreUsuario = usuario.NombreUsuario,
+                PrimerApellido = usuario.PrimerApellido,
+                SegundoApellido = usuario.SegundoApellido,
+                TelefonoEmergencia = usuario.TelefonoEmergencia,
+                UsuarioID = usuario.UsuarioID,
+                IdCondo = usuario.Inmueble.CondoID,
+                DescripcionCondo = usuario.Inmueble.Condominio.Descripcion
+            };
+
+            return Ok(_usuarioInfo);
         }
 
         // PUT: api/Usuarios/5
