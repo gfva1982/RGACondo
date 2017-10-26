@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="ViewModels\RegistrarInvitadosViewModel.cs" />
     <Compile Include="Models\RegistroDeAcceso.cs" />
+    <Compile Include="Models\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

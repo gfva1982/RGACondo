@@ -1,4 +1,6 @@
 ﻿using System;
+using Condos.Models;
+
 namespace Condos.ViewModels
 {
     public class MainViewModel
@@ -17,6 +19,18 @@ namespace Condos.ViewModels
         }
 
         public RegistrarInvitadosViewModel RegistrarInvitados
+        {
+            get;
+            set;
+        }
+
+        public TokenResponse Token
+        {
+            get;
+            set;
+        }
+
+        public Usuario InfoUsuario
         {
             get;
             set;

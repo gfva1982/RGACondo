@@ -220,13 +220,14 @@ namespace Condos.ViewModels
                 await dialogService.ShowMessage("Error", connection.Message);
                 return;
             }
+            var mainViewModel = MainViewModel.GetInstance();
 
             var response = await apiService.Post<RegistroDeAcceso>("http://condoscrwebapi.azurewebsites.net","api","/RegistroDeAccesoes",new RegistroDeAcceso{
                 CondoID = 1,
-                 FechaAcceso = Fecha,
-                 Identificacion = Identificacion,
-                 NombreInvitado = Nombre,
-                 NombreAutoriza = "Geovanny",
+                FechaAcceso = Fecha,
+                Identificacion = Identificacion,
+                NombreInvitado = Nombre,
+                NombreAutoriza = mainViewModel.InfoUsuario.NombreCompleto + " " + mainViewModel.InfoUsuario.PrimerApellido,
                  PlacaVehiculo = Placa
             });
 

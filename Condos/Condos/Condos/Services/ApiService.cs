@@ -69,6 +69,10 @@ namespace Condos.Services
             }
         }
 
+
+
+
+
         public async Task<Response> Get<T>(
         string urlBase,
         string servicePrefix,
@@ -83,6 +87,53 @@ namespace Condos.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(TokenType, accessToken);
                 client.BaseAddress = new Uri(urlBase);
                 var url = string.Format("{0}{1}/{2}", servicePrefix, Controller, id);
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = response.StatusCode.ToString()
+                    };
+                }
+
+                var model = JsonConvert.DeserializeObject<T>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = "OK",
+                    Result = model
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
+
+        public async Task<Response> Get<T>(
+       string urlBase,
+       string servicePrefix,
+       string Controller,
+       string TokenType,
+       string accessToken,
+       string variable,
+        string valor)
+        {
+            try
+            {
+                var client = new HttpClient();
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(TokenType, accessToken);
+                client.BaseAddress = new Uri(urlBase);
+                var url = string.Format("{0}{1}?{2}={3}", servicePrefix, Controller,variable,valor );
                 var response = await client.GetAsync(url);
                 var result = await response.Content.ReadAsStringAsync();
 
