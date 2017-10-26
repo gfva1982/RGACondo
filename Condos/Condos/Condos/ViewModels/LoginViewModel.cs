@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using Condos.Services;
 using Xamarin.Forms;
 using Condos.Views;
+using Condos.Models;
 
 namespace Condos.ViewModels
 {
@@ -186,6 +187,19 @@ namespace Condos.ViewModels
 
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = response;
+
+            var infoUsuario = await apiService.Get<Usuario>("http://condoscrwebapi.azurewebsites.net/",
+                                                                      "api", 
+                                                                      "/infoUsuario", 
+                                                                      response.TokenType, 
+                                                                      response.AccessToken, 
+                                                                      "NombreUsuario",
+                                                                      response.UserName);
+
+            if (infoUsuario.IsSuccess)
+            {
+                mainViewModel.InfoUsuario = infoUsuario.Result as Usuario;
+            }
             mainViewModel.Principal = new PrincipalViewModel();
 
             await Application.Current.MainPage.Navigation.PushAsync(new PrincipalView());

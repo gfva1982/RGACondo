@@ -29,6 +29,12 @@ namespace Condos.ViewModels
             get;
             set;
         }
+
+        public Usuario InfoUsuario
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region Constructor
