@@ -197,6 +197,7 @@
     <Compile Include="Controllers\CondominiosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
+    <Compile Include="Controllers\InvitadosFrecuentesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegistroDeAccesoesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -310,6 +311,11 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\InvitadosFrecuentes\Create.cshtml" />
+    <Content Include="Views\InvitadosFrecuentes\Delete.cshtml" />
+    <Content Include="Views\InvitadosFrecuentes\Details.cshtml" />
+    <Content Include="Views\InvitadosFrecuentes\Edit.cshtml" />
+    <Content Include="Views\InvitadosFrecuentes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

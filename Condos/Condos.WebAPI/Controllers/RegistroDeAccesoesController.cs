@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Condos.Entities;
+using Condos.WebAPI.Models;
 
 namespace Condos.WebAPI.Controllers
 {
@@ -73,8 +74,11 @@ namespace Condos.WebAPI.Controllers
 
         // POST: api/RegistroDeAccesoes
         [ResponseType(typeof(RegistroDeAcceso))]
-        public async Task<IHttpActionResult> PostRegistroDeAcceso(RegistroDeAcceso registroDeAcceso)
+        public async Task<IHttpActionResult> PostRegistroDeAcceso(RegistroInvitado registroDeAcceso)
         {
+
+          
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -83,10 +87,23 @@ namespace Condos.WebAPI.Controllers
             // crear lógica para extraer nombre del usuario y el condominio asociado.
 
 
-            db.RegistroDeAccesoes.Add(registroDeAcceso);
+            var _registroInvitado = new RegistroDeAcceso
+            {
+                Comentarios = string.Empty,
+                CondoID = registroDeAcceso.CondoID,
+                DescripcionInmueble = registroDeAcceso.Destino,
+                FechaAcceso = registroDeAcceso.FechaAcceso,
+                Identificacion = registroDeAcceso.Identificacion,
+                NombreAutoriza = registroDeAcceso.NombreAutoriza,
+                NombreInvitado = registroDeAcceso.NombreInvitado,
+                PlacaVehiculo = registroDeAcceso.PlacaVehiculo,
+                
+            };
+
+            db.RegistroDeAccesoes.Add(_registroInvitado);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = registroDeAcceso.RegistroID }, registroDeAcceso);
+            return CreatedAtRoute("DefaultApi", new { id = _registroInvitado.RegistroID }, _registroInvitado);
         }
 
         // DELETE: api/RegistroDeAccesoes/5

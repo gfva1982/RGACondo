@@ -36,5 +36,8 @@ namespace Condos.Entities
         public virtual Inmueble Inmueble { get; set; }
 
 
+        [JsonIgnore]
+        public virtual ICollection<InvitadosFrecuentes> InvitadosFrecuentes { get; set; }
+
     }
 }

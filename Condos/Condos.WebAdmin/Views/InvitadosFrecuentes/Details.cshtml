@@ -1,0 +1,50 @@
+﻿@model Condos.Entities.InvitadosFrecuentes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InvitadosFrecuentes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreInvitado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreInvitado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Identificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlacaVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlacaVehiculo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvitadoFrecuenteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

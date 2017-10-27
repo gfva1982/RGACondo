@@ -231,6 +231,7 @@
     <Compile Include="Controllers\CondominiosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
+    <Compile Include="Controllers\InvitadosFrecuentesCustomController.cs" />
     <Compile Include="Controllers\RegistroDeAccesoesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\RegistroInvitado.cs" />
     <Compile Include="Models\UsuarioInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
