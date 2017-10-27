@@ -38,6 +38,18 @@ namespace Condos.Models
             get;
             set;
         }
+
+        public string Destino
+        {
+            get;
+            set;
+        }
+
+        public bool Registra
+        {
+            get;
+            set;
+        }
     }
 
 }

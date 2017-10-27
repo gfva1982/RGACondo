@@ -175,6 +175,24 @@ namespace Condos.ViewModels
 
         }
 
+        public RegistrarInvitadosViewModel(InvitadoFrecuente pInvitado)
+        {
+            Nombre = pInvitado.NombreInvitado;
+            Identificacion = pInvitado.Identificacion;
+            Placa = pInvitado.PlacaVehiculo;
+
+
+            IsEnabled = true;
+            IsToggled = true;
+            Fecha = DateTime.Now;
+
+            apiService = new ApiService();
+            dialogService = new DialogService();
+
+        }
+       
+
+
         #endregion
 
         #region Eventos
@@ -223,17 +241,27 @@ namespace Condos.ViewModels
             var mainViewModel = MainViewModel.GetInstance();
 
             var response = await apiService.Post<RegistroDeAcceso>("http://condoscrwebapi.azurewebsites.net","api","/RegistroDeAccesoes",new RegistroDeAcceso{
-                CondoID = 1,
+                CondoID = mainViewModel.InfoUsuario.IdCondo,
                 FechaAcceso = Fecha,
                 Identificacion = Identificacion,
                 NombreInvitado = Nombre,
                 NombreAutoriza = mainViewModel.InfoUsuario.NombreCompleto + " " + mainViewModel.InfoUsuario.PrimerApellido,
-                 PlacaVehiculo = Placa
+                PlacaVehiculo = Placa,
+                Destino = mainViewModel.InfoUsuario.DetalleInmueble,
+                Registra = IsToggled
+
             });
 
             if (!response.IsSuccess)
             {
-                await dialogService.ShowMessage("Error", response.Message);
+                await dialogService.ShowMessage("Error", "No se pudo agregar al invitado");
+                Nombre = string.Empty;
+                Identificacion = string.Empty;
+                Placa = string.Empty;
+                Fecha = DateTime.Now;
+                IsRunning = false;
+                IsEnabled = true;
+                return;
             }
 
 

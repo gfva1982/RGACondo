@@ -24,6 +24,12 @@ namespace Condos.ViewModels
             set;
         }
 
+        public InvitadosFrecuentesViewModel InvitadosFrecuentes
+        {
+            get;
+            set;
+        }
+
         public TokenResponse Token
         {
             get;

@@ -70,6 +70,22 @@ namespace Condos.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new RegistrarInvitadosView());
         }
 
+        public ICommand InvitadosAutorizadosCommand
+        {
+            get
+            {
+                return new RelayCommand(InvitadosAutorizados);
+            }
+        }
+
+        private async void InvitadosAutorizados()
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.InvitadosFrecuentes = new InvitadosFrecuentesViewModel();
+
+            await Application.Current.MainPage.Navigation.PushAsync(new InvitadosFrecuentesView());
+        }
+
        
     }
 }

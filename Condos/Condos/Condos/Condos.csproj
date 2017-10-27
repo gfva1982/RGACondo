@@ -59,6 +59,11 @@
     <Compile Include="ViewModels\RegistrarInvitadosViewModel.cs" />
     <Compile Include="Models\RegistroDeAcceso.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\InvitadoFrecuente.cs" />
+    <Compile Include="Views\InvitadosFrecuentesView.xaml.cs">
+      <DependentUpon>InvitadosFrecuentesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\InvitadosFrecuentesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -72,6 +77,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegistrarInvitadosView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InvitadosFrecuentesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
