@@ -27,5 +27,7 @@ namespace Condos.WebAPI.Models
         public string DetalleInmueble { get; set; }
         public int IdCondo { get; internal set; }
         public string DescripcionCondo { get; internal set; }
+
+        public List<InvitadosFrecuentesInfo> ListaInvitadosFrecuentes { get; set; }
     }
 }

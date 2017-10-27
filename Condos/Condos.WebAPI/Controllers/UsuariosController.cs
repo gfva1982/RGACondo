@@ -49,6 +49,20 @@ namespace Condos.WebAPI.Controllers
                 return NotFound();
             }
 
+
+            var invitadosFrecuentesInfo = new List<InvitadosFrecuentesInfo>();
+            foreach (var invitado in usuario.InvitadosFrecuentes)
+            {
+                invitadosFrecuentesInfo.Add(new InvitadosFrecuentesInfo {
+                    Identificacion = invitado.Identificacion,
+                    InvitadoFrecuenteID = invitado.InvitadoFrecuenteID,
+                    NombreInvitado = invitado.NombreInvitado,
+                    PlacaVehiculo = invitado.PlacaVehiculo,
+                    UsuarioID = invitado.UsuarioID
+                    
+                });
+            }
+
             var _usuarioInfo = new UsuarioInfo
             {
                 Identificacion = usuario.Identificacion,
@@ -61,7 +75,9 @@ namespace Condos.WebAPI.Controllers
                 TelefonoEmergencia = usuario.TelefonoEmergencia,
                 UsuarioID = usuario.UsuarioID,
                 IdCondo = usuario.Inmueble.CondoID,
-                DescripcionCondo = usuario.Inmueble.Condominio.Descripcion
+                DescripcionCondo = usuario.Inmueble.Condominio.Descripcion,
+                ListaInvitadosFrecuentes = invitadosFrecuentesInfo
+                
             };
 
             return Ok(_usuarioInfo);
