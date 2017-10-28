@@ -36,6 +36,7 @@ namespace Condos.ViewModels
 
         #region Services
         DialogService dialogService;
+        NavigationService navigationService;
         #endregion
 
         #region Events
@@ -47,6 +48,7 @@ namespace Condos.ViewModels
         {
             IsEnabled = true;
             dialogService = new DialogService();
+            navigationService = new NavigationService();
 
         }
 
@@ -62,12 +64,12 @@ namespace Condos.ViewModels
             }
         }
 
-        private async void RegistrarVisitante()
+         async void RegistrarVisitante()
         {
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.RegistrarInvitados = new RegistrarInvitadosViewModel();
 
-            await Application.Current.MainPage.Navigation.PushAsync(new RegistrarInvitadosView());
+            await navigationService.Navigate("RegistrarInvitadosView");
         }
 
         public ICommand InvitadosAutorizadosCommand
@@ -78,12 +80,12 @@ namespace Condos.ViewModels
             }
         }
 
-        private async void InvitadosAutorizados()
+         async void InvitadosAutorizados()
         {
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.InvitadosFrecuentes = new InvitadosFrecuentesViewModel();
+            await navigationService.Navigate("InvitadosFrecuentesView");
 
-            await Application.Current.MainPage.Navigation.PushAsync(new InvitadosFrecuentesView());
         }
 
        
