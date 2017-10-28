@@ -1,10 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Condos.Services;
-using Xamarin.Forms;
-using Condos.Views;
 using Condos.Models;
 
 namespace Condos.ViewModels
@@ -126,6 +123,7 @@ namespace Condos.ViewModels
         #region Services
         DialogService dialogService;
         ApiService apiService;
+        NavigationService navigationService;
         #endregion
 
         #region Commands
@@ -202,7 +200,7 @@ namespace Condos.ViewModels
             }
             mainViewModel.Principal = new PrincipalViewModel();
 
-            await Application.Current.MainPage.Navigation.PushAsync(new PrincipalView());
+            await navigationService.Navigate("PrincipalView");
             Email = null;
             Password = null;
 
@@ -220,6 +218,7 @@ namespace Condos.ViewModels
             IsToggled = true;
             dialogService = new DialogService();
             apiService = new ApiService();
+            navigationService = new NavigationService();
             Email = "gvega@gxsolutions.com";
             Password = "Sdfx2028";
         }

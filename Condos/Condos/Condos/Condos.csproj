@@ -64,6 +64,7 @@
       <DependentUpon>InvitadosFrecuentesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\InvitadosFrecuentesViewModel.cs" />
+    <Compile Include="Services\NavigationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
