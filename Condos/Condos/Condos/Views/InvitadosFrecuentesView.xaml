@@ -13,10 +13,20 @@
 
             <ListView 
                 HasUnevenRows="true"
-                ItemsSource="{Binding Invitados}">
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemsSource="{Binding Invitados}"
+                IsPullToRefreshEnabled="true"
+                RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                    Command="{Binding EliminarCommand}"
+                                    IsDestructive="true"
+                                    Text="Eliminar">
+                                </MenuItem>
+                            </ViewCell.ContextActions>    
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>

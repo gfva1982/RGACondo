@@ -194,10 +194,16 @@ namespace Condos.ViewModels
                                                                       "NombreUsuario",
                                                                       response.UserName);
 
-            if (infoUsuario.IsSuccess)
+            if (!infoUsuario.IsSuccess)
             {
-                mainViewModel.InfoUsuario = infoUsuario.Result as Usuario;
+                IsRunning = false;
+                IsEnabled = true;
+                await dialogService.ShowMessage("Error", infoUsuario.Message);
+                Email = string.Empty;
+                Password = string.Empty;
+                return;
             }
+            mainViewModel.InfoUsuario = infoUsuario.Result as Usuario;
             mainViewModel.Principal = new PrincipalViewModel();
 
             await navigationService.Navigate("PrincipalView");

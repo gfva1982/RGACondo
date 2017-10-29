@@ -14,6 +14,26 @@ namespace Condos.ViewModels
     {
         #region Properties
 
+
+
+        public bool TIsEnabled
+        {
+            get
+            {
+                return _tIsEnabled;
+            }
+            set
+            {
+                if (_tIsEnabled != value)
+                {
+                    _tIsEnabled = value;
+                    PropertyChanged?.Invoke(this,
+                                            new PropertyChangedEventArgs(nameof(TIsEnabled)));
+
+                }
+            }
+        }
+
         public bool IsRunning
         {
             get
@@ -156,7 +176,7 @@ namespace Condos.ViewModels
         bool _isToggled;
         bool _isEnabled;
         bool _isRunning;
-
+        bool _tIsEnabled;
        
 
 
@@ -168,6 +188,7 @@ namespace Condos.ViewModels
         {
             IsEnabled = true;
             IsToggled = true;
+            TIsEnabled = true;
             Fecha = DateTime.Now;
 
             apiService = new ApiService();
@@ -183,7 +204,8 @@ namespace Condos.ViewModels
 
 
             IsEnabled = true;
-            IsToggled = true;
+            TIsEnabled = false;
+            IsToggled = false;
             Fecha = DateTime.Now;
 
             apiService = new ApiService();
@@ -248,7 +270,8 @@ namespace Condos.ViewModels
                 NombreAutoriza = mainViewModel.InfoUsuario.NombreCompleto + " " + mainViewModel.InfoUsuario.PrimerApellido,
                 PlacaVehiculo = Placa,
                 Destino = mainViewModel.InfoUsuario.DetalleInmueble,
-                Registra = IsToggled
+                Registra = IsToggled,
+                UsuarioID = mainViewModel.InfoUsuario.UsuarioID
 
             });
 
@@ -267,13 +290,30 @@ namespace Condos.ViewModels
 
             await dialogService.ShowMessage("", "El registro se agregó exitosamente");
 
+            if (IsToggled)
+            {
+                
+               
+
+                var infoUsuario = await apiService.Get<Usuario>("http://condoscrwebapi.azurewebsites.net/",
+                                                                          "api",
+                                                                          "/infoUsuario",
+                                                                          mainViewModel.Token.TokenType,
+                                                                          mainViewModel.Token.AccessToken,
+                                                                          "NombreUsuario",
+                                                                           mainViewModel.InfoUsuario.NombreUsuario);
+
+               
+                mainViewModel.InfoUsuario = infoUsuario.Result as Usuario;
+            }
+
             Nombre = string.Empty;
             Identificacion = string.Empty;
             Placa = string.Empty;
             Fecha = DateTime.Now;
             IsRunning = false;
             IsEnabled = true;
-
+            TIsEnabled = true;
 
         }
 

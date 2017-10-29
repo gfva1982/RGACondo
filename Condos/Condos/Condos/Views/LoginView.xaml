@@ -7,7 +7,6 @@
     Padding="20"
     BackgroundColor="#BFA288">
 
-    
 	<ContentPage.Content>
         <StackLayout 
             BindingContext="{Binding Login}"

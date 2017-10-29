@@ -103,7 +103,7 @@
 
                 <Switch
                     Grid.Column="1"
-                    
+                    IsEnabled="{Binding TIsEnabled, Mode=TwoWay}"
                     Grid.Row="4"
                     IsToggled="{Binding IsToggled, Mode=TwoWay}">
                 </Switch>

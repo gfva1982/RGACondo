@@ -13,7 +13,6 @@ namespace Condos.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
-
         #region Properties
         public ObservableCollection<InvitadoFrecuente> Invitados
         {
@@ -36,12 +35,10 @@ namespace Condos.ViewModels
 
         #endregion
 
-
         #region Services
         ApiService apiService;
         DialogService dialogService;
         #endregion
-
 
         #region Methods
          void CargarListaInvitados()
@@ -53,7 +50,6 @@ namespace Condos.ViewModels
             Invitados = new ObservableCollection<InvitadoFrecuente>(invitados.OrderBy(px => px.NombreInvitado));
         }
         #endregion
-
 
         #region Constructor
         public InvitadosFrecuentesViewModel()

@@ -50,6 +50,12 @@ namespace Condos.Models
             get;
             set;
         }
+
+        public int UsuarioID
+        {
+            get;
+            set;
+        }
     }
 
 }
