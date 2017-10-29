@@ -30,8 +30,6 @@ namespace Condos.WebAPI.Models
         public string Destino { get; set; }
 
         public bool Registra { get; set; }
-
-
-
+        public int UsuarioID { get; set; }
     }
 }

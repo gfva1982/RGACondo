@@ -101,7 +101,26 @@ namespace Condos.WebAPI.Controllers
             };
 
             db.RegistroDeAccesoes.Add(_registroInvitado);
-            await db.SaveChangesAsync();
+            if (registroDeAcceso.Registra)
+            {
+                db.InvitadosFrecuentes.Add(new InvitadosFrecuentes
+                {
+                    Identificacion = registroDeAcceso.Identificacion,
+                    NombreInvitado = registroDeAcceso.NombreInvitado,
+                    PlacaVehiculo = registroDeAcceso.PlacaVehiculo,
+                    UsuarioID = registroDeAcceso.UsuarioID
+                });
+            }
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception _ex)
+            {
+
+                return BadRequest(_ex.Message);
+            }
+           
 
             return CreatedAtRoute("DefaultApi", new { id = _registroInvitado.RegistroID }, _registroInvitado);
         }

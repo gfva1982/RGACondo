@@ -58,7 +58,8 @@ namespace Condos.WebAPI.Controllers
                     InvitadoFrecuenteID = invitado.InvitadoFrecuenteID,
                     NombreInvitado = invitado.NombreInvitado,
                     PlacaVehiculo = invitado.PlacaVehiculo,
-                    UsuarioID = invitado.UsuarioID
+                    UsuarioID = invitado.UsuarioID,
+                    
                     
                 });
             }
