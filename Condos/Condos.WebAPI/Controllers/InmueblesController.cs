@@ -13,7 +13,7 @@ using Condos.Entities;
 
 namespace Condos.WebAPI.Controllers
 {
-    [Authorize]
+    
     public class InmueblesController : ApiController
     {
         private DataContext db = new DataContext();
@@ -22,6 +22,20 @@ namespace Condos.WebAPI.Controllers
         public IQueryable<Inmueble> GetInmuebles()
         {
             return db.Inmuebles;
+        }
+
+
+        [HttpGet]
+        [Route("api/ObtenerInmublesPublicos")]
+        public async Task<IHttpActionResult> ObtenerInmublesPublicos()
+        {
+            List<Inmueble> inmueble = await db.Inmuebles.Where(p => p.EsPublico == true).ToListAsync();
+            if (inmueble == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(inmueble);
         }
 
         // GET: api/Inmuebles/5
