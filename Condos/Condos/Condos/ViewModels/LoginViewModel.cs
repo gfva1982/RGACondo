@@ -222,9 +222,9 @@ namespace Condos.ViewModels
         {
             IsEnabled = true;
             IsToggled = true;
-            dialogService = new DialogService();
-            apiService = new ApiService();
-            navigationService = new NavigationService();
+                dialogService = new DialogService();
+                apiService = new ApiService();
+                navigationService = new NavigationService();
             Email = "gvega@gxsolutions.com";
             Password = "Sdfx2028";
         }

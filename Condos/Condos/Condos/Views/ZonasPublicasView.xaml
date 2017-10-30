@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Condos.Views.ZonasPublicasView"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Áreas Comunes"
+    Padding="20"
+    BackgroundColor="#BFA288">
+	<ContentPage.Content>
+       <StackLayout
+         BindingContext="{Binding ZonasPublicas}"
+            BackgroundColor="#F2F1DF">
+
+             <ListView 
+                HasUnevenRows="true"
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemsSource="{Binding Inmuebles}"
+                IsPullToRefreshEnabled="true"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                    Command="{Binding EliminarCommand}"
+                                    IsDestructive="true"
+                                    Text="Eliminar">
+                                </MenuItem>
+                            </ViewCell.ContextActions>    
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                   
+                                </Grid.ColumnDefinitions>
+
+                                 <StackLayout>
+                                 <Image
+                                    HeightRequest="200"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="200">
+                                  </Image>
+                                
+                                <Label 
+                                    Margin="10"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    TextColor="#07A6A7"
+                                    Text="{Binding Descripcion}"/>
+
+                                    <Label 
+                                    Margin="10"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    TextColor="#07A6A7"
+                                    Text="{Binding Comentario}"/>
+                                </StackLayout>
+
+                               
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

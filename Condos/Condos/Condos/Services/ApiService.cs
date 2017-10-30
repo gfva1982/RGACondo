@@ -176,7 +176,7 @@ namespace Condos.Services
             try
             {
                 var client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(TokenType, accessToken);
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(TokenType, accessToken);
                 client.BaseAddress = new Uri(urlBase);
                 var url = string.Format("{0}{1}", servicePrefix, Controller);
                 var response = await client.GetAsync(url);

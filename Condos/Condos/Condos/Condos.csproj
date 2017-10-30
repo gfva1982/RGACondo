@@ -64,6 +64,11 @@
     </Compile>
     <Compile Include="ViewModels\InvitadosFrecuentesViewModel.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Views\ZonasPublicasView.xaml.cs">
+      <DependentUpon>ZonasPublicasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ZonasPublicasViewModel.cs" />
+    <Compile Include="Models\Inmueble.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -80,6 +85,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\InvitadosFrecuentesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ZonasPublicasView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

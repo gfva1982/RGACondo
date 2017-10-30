@@ -56,15 +56,33 @@ namespace Condos.ViewModels
 
 
 
+        #region Command
+
+        public ICommand ConsultaAreasCommand
+        {
+            get
+            {
+                return new RelayCommand(ConsultaAreas);
+            }
+        }
+
+        async void ConsultaAreas()
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.ZonasPublicas = new ZonasPublicasViewModel();
+
+            await navigationService.Navigate("ZonasPublicasView");
+        }
+
         public ICommand RegistrarVisitanteCommand
         {
-            get 
+            get
             {
                 return new RelayCommand(RegistrarVisitante);
             }
         }
 
-         async void RegistrarVisitante()
+        async void RegistrarVisitante()
         {
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.RegistrarInvitados = new RegistrarInvitadosViewModel();
@@ -80,7 +98,7 @@ namespace Condos.ViewModels
             }
         }
 
-         async void InvitadosAutorizados()
+        async void InvitadosAutorizados()
         {
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.InvitadosFrecuentes = new InvitadosFrecuentesViewModel();
@@ -88,6 +106,8 @@ namespace Condos.ViewModels
 
         }
 
-       
+        #endregion
+
+
     }
 }

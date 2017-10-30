@@ -16,5 +16,14 @@ namespace Condos.Services
         {
            return await Application.Current.MainPage.DisplayAlert(title, message, "Yes","No");
         }
+
+       public async Task<string>ShowImageOptions()
+        {
+            return await Application.Current.MainPage.DisplayActionSheet("De donde desea obtener la imagen",
+                                                                        "Cancel",
+                                                                        null,
+                                                                        "From Gallery",
+                                                                        "From Camera");
+        }
     }
 }

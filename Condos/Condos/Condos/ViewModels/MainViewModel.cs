@@ -30,6 +30,12 @@ namespace Condos.ViewModels
             set;
         }
 
+        public ZonasPublicasViewModel ZonasPublicas
+        {
+            get;
+            set;
+        }
+
         public TokenResponse Token
         {
             get;

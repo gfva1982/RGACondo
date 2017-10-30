@@ -22,6 +22,12 @@ namespace Condos.Services
                 case "InvitadosFrecuentesView":
                     await Application.Current.MainPage.Navigation.PushAsync(new InvitadosFrecuentesView());
                     break;
+
+                case "ZonasPublicasView":
+                    await Application.Current.MainPage.Navigation.PushAsync(new ZonasPublicasView());
+                    break;
+
+
             }
 
 
