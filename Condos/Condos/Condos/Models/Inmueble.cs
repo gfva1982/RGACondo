@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Condos.Models
 {
     public class Inmueble
@@ -26,6 +28,12 @@ namespace Condos.Models
                 return string.Format("http://condoscrwebadmin.azurewebsites.net/{0}", Image.Substring(1));
             }
 
+        }
+
+        public List<Calendario> Calendario
+        {
+            get;
+            set;
         }
 
         #endregion

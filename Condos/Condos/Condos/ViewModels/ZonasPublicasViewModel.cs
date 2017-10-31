@@ -70,7 +70,6 @@ namespace Condos.ViewModels
 
         #endregion
 
-
         #region Methods
         async void CargarZonas()
         {
@@ -87,7 +86,7 @@ namespace Condos.ViewModels
 
             var response = await apiService.Get<Inmueble>("http://condoscrwebapi.azurewebsites.net/",
                                                 "api",
-                                                "/ObtenerInmublesPublicos",
+                                                "/ObtenerInmueblesPublicos",
                                                 "",
                                                 "");
 

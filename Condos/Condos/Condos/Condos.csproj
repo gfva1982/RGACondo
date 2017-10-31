@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="ViewModels\ZonasPublicasViewModel.cs" />
     <Compile Include="Models\Inmueble.cs" />
+    <Compile Include="Models\Calendario.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
