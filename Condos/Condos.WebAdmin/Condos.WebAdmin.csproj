@@ -194,6 +194,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalendarioZonasPublicasController.cs" />
     <Compile Include="Controllers\CondominiosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InmueblesController.cs" />
@@ -316,6 +317,11 @@
     <Content Include="Views\InvitadosFrecuentes\Details.cshtml" />
     <Content Include="Views\InvitadosFrecuentes\Edit.cshtml" />
     <Content Include="Views\InvitadosFrecuentes\Index.cshtml" />
+    <Content Include="Views\CalendarioZonasPublicas\Create.cshtml" />
+    <Content Include="Views\CalendarioZonasPublicas\Delete.cshtml" />
+    <Content Include="Views\CalendarioZonasPublicas\Details.cshtml" />
+    <Content Include="Views\CalendarioZonasPublicas\Edit.cshtml" />
+    <Content Include="Views\CalendarioZonasPublicas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

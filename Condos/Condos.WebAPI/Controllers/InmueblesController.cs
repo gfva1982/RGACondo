@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Condos.Entities;
+using Condos.WebAPI.Models;
+using System;
 
 namespace Condos.WebAPI.Controllers
 {
-    
+
     public class InmueblesController : ApiController
     {
         private DataContext db = new DataContext();
@@ -26,7 +26,7 @@ namespace Condos.WebAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/ObtenerInmublesPublicos")]
+        [Route("api/ObtenerInmueblesPublicos")]
         public async Task<IHttpActionResult> ObtenerInmublesPublicos()
         {
             List<Inmueble> inmueble = await db.Inmuebles.Where(p => p.EsPublico == true).ToListAsync();
@@ -35,7 +35,47 @@ namespace Condos.WebAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(inmueble);
+            var _lista = new List<InmuebleCostume>();
+            var _fecha = DateTime.Today;
+            var _fechaInicio = _fecha.AddDays(1 - Convert.ToDouble(_fecha.DayOfWeek));
+            var _fechaFinal = _fecha.AddMonths(3).AddDays(7 - Convert.ToDouble(_fecha.AddMonths(3).DayOfWeek));
+
+            foreach (var item in inmueble)
+            {
+                var _calendario = new List<CalendarioCostume>();
+              
+
+
+
+                foreach (var calendario in item.Calendario.Where(p=> p.Fecha >= _fechaInicio && p.Fecha <= _fechaFinal ))
+                {
+                    _calendario.Add(new CalendarioCostume {
+                        Comentarios = calendario.Comentarios,
+                        Estado = calendario.Estado,
+                        Fecha = calendario.Fecha,
+                        HoraFinal =calendario.HoraFinal,
+                        HoraInicio = calendario.HoraInicio,
+                        InmuebleID = calendario.InmuebleID,
+                        UsuarioID = calendario.UsuarioID,
+                        ZonaPublicaID = calendario.ZonaPublicaID
+                    });
+                }
+
+
+                _lista.Add(new InmuebleCostume
+                {
+                    Calendario = _calendario,
+                    Comentario = item.Comentario,
+                    CondoID = item.CondoID,
+                    Descripcion = item.Descripcion,
+                    EsPublico = item.EsPublico,
+                    Estado = item.Estado,
+                    Image = item.Image,
+                    InmuebleID = item.InmuebleID
+                });
+            }
+
+            return Ok(_lista);
         }
 
         // GET: api/Inmuebles/5
