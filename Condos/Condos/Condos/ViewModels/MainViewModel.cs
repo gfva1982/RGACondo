@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Windows.Input;
 using Condos.Models;
+using Condos.Services;
+using GalaSoft.MvvmLight.Command;
 
 namespace Condos.ViewModels
 {
@@ -36,7 +39,20 @@ namespace Condos.ViewModels
             set;
         }
 
+        public ZonaPublicaCalendarioViewModel ZonaPublicaCalendario
+        {
+            get;
+            set;
+        }
+
+        public ZonaPublicaReservacionViewModel ZonaPublicaReservacion
+        {
+            get;
+            set;
+        }
+
         public TokenResponse Token
+
         {
             get;
             set;
@@ -55,6 +71,8 @@ namespace Condos.ViewModels
             instance = this;
             Login = new LoginViewModel();
 
+            navigationService = new NavigationService();
+
         }
 
         #endregion
@@ -70,6 +88,26 @@ namespace Condos.ViewModels
             }
 
             return instance;
+        }
+        #endregion
+
+        #region Services
+        NavigationService navigationService;
+        #endregion
+
+        #region Commnads
+        public ICommand ReservarZonaPublicaCommand
+        {
+            get
+            {
+                return new RelayCommand(GoReservarZonaPublica);
+            }
+        }
+
+        async void GoReservarZonaPublica()
+        {
+            ZonaPublicaReservacion = new ZonaPublicaReservacionViewModel();
+            await navigationService.Navigate("ZonaPublicaReservacionView");
         }
         #endregion
     }

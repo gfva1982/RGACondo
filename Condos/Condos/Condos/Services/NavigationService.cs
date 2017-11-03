@@ -27,6 +27,14 @@ namespace Condos.Services
                     await Application.Current.MainPage.Navigation.PushAsync(new ZonasPublicasView());
                     break;
 
+                case "ZonaPublicaCalendarioView":
+                    await Application.Current.MainPage.Navigation.PushAsync(new ZonaPublicaCalendarioView());
+                    break;
+
+                case "ZonaPublicaReservacionView":
+                    await Application.Current.MainPage.Navigation.PushAsync(new ZonaPublicaReservacionView());
+                    break;
+
 
             }
 

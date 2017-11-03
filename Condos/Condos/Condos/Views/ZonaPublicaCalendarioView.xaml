@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Condos.Views.ZonaPublicaCalendarioView"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="{Binding Title}"
+    Padding="20"
+    BackgroundColor="#BFA288">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            
+             Command="{Binding ReservarZonaPublicaCommand}"
+            Icon="ic_add_circle_outline"
+             >
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+	<ContentPage.Content>
+        <StackLayout BindingContext="{Binding ZonaPublicaCalendario}"
+            BackgroundColor="#F2F1DF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                   
+                                </Grid.ColumnDefinitions>
+
+                                 <StackLayout>
+                                    <Label 
+                                    Margin="10"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="Center"
+                                    TextColor="#07A6A7"
+                                    Text="{Binding Title}"/>
+
+                                   
+                                 <Image
+                                    HeightRequest="200"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="200">
+                                  </Image>
+                                
+                                    <Label 
+                                        Margin="10"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="Center"
+                                        TextColor="#07A6A7"
+                                        Text="{Binding Comentario}"/>
+
+                                    <Label FontAttributes="Bold"
+                                        Margin="10"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        TextColor="#d95622"
+                                        FontSize="Large"
+                                        Text="Calendario"/>
+
+                                   <ListView 
+                                        HasUnevenRows="true"
+                                        IsRefreshing="{Binding IsRefreshing}"
+                                        ItemsSource="{Binding Calendario}"
+                                        IsPullToRefreshEnabled="true"
+                                        BackgroundColor="#D4CFC5"
+                                        RefreshCommand="{Binding RefreshCommand}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                             </Grid.ColumnDefinitions>
+
+                                                                <StackLayout>
+                                                            
+                                                                        <Label 
+                                                                            Margin="10"
+                                                                            HorizontalOptions="CenterAndExpand"
+                                                                            VerticalOptions="Center"
+                                                                            TextColor="#d95622"
+                                                                            Text="{Binding FechaReservacion}"/>
+
+                                                                        <Label 
+                                                                            
+                                                                            HorizontalOptions="CenterAndExpand"
+                                                                            VerticalOptions="Center"
+                                                                            TextColor="#d95622"
+                                                                            Text="{Binding HoraInicioReservacion}"/>
+
+                                                                        <Label 
+                                                                           
+                                                                            HorizontalOptions="CenterAndExpand"
+                                                                            VerticalOptions="Center"
+                                                                            TextColor="#d95622"
+                                                                            Text="{Binding HoraFinalReservacion}"/>
+
+                                                                        <Label 
+                                                                            Margin="0,10"
+                                                                            HorizontalOptions="CenterAndExpand"
+                                                                            VerticalOptions="Center"
+                                                                            TextColor="#d95622"
+                                                                            Text="{Binding EstadoReserva}"/>
+
+                                            
+                                                                    </StackLayout>  
+                                                           </Grid>
+                                                     </ViewCell>
+                                                 </DataTemplate>
+                                             </ListView.ItemTemplate>
+                                    </ListView>
+
+                                </StackLayout>
+                            </Grid>
+            </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

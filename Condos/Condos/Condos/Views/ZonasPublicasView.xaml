@@ -20,13 +20,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem
-                                    Command="{Binding EliminarCommand}"
-                                    IsDestructive="true"
-                                    Text="Eliminar">
-                                </MenuItem>
-                            </ViewCell.ContextActions>    
+                            
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -53,7 +47,18 @@
                                     VerticalOptions="Center"
                                     TextColor="#07A6A7"
                                     Text="{Binding Comentario}"/>
+
+                                    <Image
+                                   
+                                    Source="ic_perm_contact_calendar">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding RevisarCalendarioCommand}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                    
                                 </StackLayout>
+
 
                                
                             </Grid>

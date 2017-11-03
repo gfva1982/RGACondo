@@ -89,15 +89,9 @@ namespace Condos.Models
 
          async void InvitadoSeleccionado()
         {
-            var _seleccion = new InvitadoFrecuente {
-             Identificacion = Identificacion,
-                 NombreInvitado = NombreInvitado,
-                 PlacaVehiculo = PlacaVehiculo,
-                 
-            };
-
+           
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.RegistrarInvitados = new RegistrarInvitadosViewModel(_seleccion);
+            mainViewModel.RegistrarInvitados = new RegistrarInvitadosViewModel(this);
 
             await navigationService.Navigate("RegistrarInvitadosView");
         }
