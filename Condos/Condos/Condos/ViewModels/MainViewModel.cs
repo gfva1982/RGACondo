@@ -70,9 +70,6 @@ namespace Condos.ViewModels
         {
             instance = this;
             Login = new LoginViewModel();
-
-            navigationService = new NavigationService();
-
         }
 
         #endregion
@@ -91,24 +88,6 @@ namespace Condos.ViewModels
         }
         #endregion
 
-        #region Services
-        NavigationService navigationService;
-        #endregion
 
-        #region Commnads
-        public ICommand ReservarZonaPublicaCommand
-        {
-            get
-            {
-                return new RelayCommand(GoReservarZonaPublica);
-            }
-        }
-
-        async void GoReservarZonaPublica()
-        {
-            ZonaPublicaReservacion = new ZonaPublicaReservacionViewModel();
-            await navigationService.Navigate("ZonaPublicaReservacionView");
-        }
-        #endregion
     }
 }

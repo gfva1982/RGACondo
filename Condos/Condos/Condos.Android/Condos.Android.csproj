@@ -152,6 +152,7 @@
     <AndroidResource Include="Resources\drawable\ic_thumb_up.png" />
     <AndroidResource Include="Resources\drawable\ic_perm_contact_calendar.png" />
     <AndroidResource Include="Resources\drawable\ic_add_circle_outline.png" />
+    <AndroidResource Include="Resources\drawable\add_Calendar.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

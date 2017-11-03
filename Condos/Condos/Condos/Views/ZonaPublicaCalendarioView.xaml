@@ -6,14 +6,7 @@
     Title="{Binding Title}"
     Padding="20"
     BackgroundColor="#BFA288">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            
-             Command="{Binding ReservarZonaPublicaCommand}"
-            Icon="ic_add_circle_outline"
-             >
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
+   
 	<ContentPage.Content>
         <StackLayout BindingContext="{Binding ZonaPublicaCalendario}"
             BackgroundColor="#F2F1DF">
@@ -33,9 +26,9 @@
 
                                    
                                  <Image
-                                    HeightRequest="200"
+                                    HeightRequest="150"
                                     Source="{Binding ImageFullPath}"
-                                    WidthRequest="200">
+                                    WidthRequest="150">
                                   </Image>
                                 
                                     <Label 
@@ -52,12 +45,21 @@
                                         TextColor="#d95622"
                                         FontSize="Large"
                                         Text="Calendario"/>
+                    
+                                       <Image 
+                                        Source="add_Calendar"
+                                      >
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ReservarZonaPublicaCommand}"/>
+                                        </Image.GestureRecognizers>
+                        
+                                        </Image>
 
                                    <ListView 
                                         HasUnevenRows="true"
                                         IsRefreshing="{Binding IsRefreshing}"
                                         ItemsSource="{Binding Calendario}"
-                                        IsPullToRefreshEnabled="true"
+
                                         BackgroundColor="#D4CFC5"
                                         RefreshCommand="{Binding RefreshCommand}">
                                             <ListView.ItemTemplate>

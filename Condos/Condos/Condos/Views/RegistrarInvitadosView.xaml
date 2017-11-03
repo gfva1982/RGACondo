@@ -85,7 +85,7 @@
                     Text="Fecha:">
                 </Label>
                 <DatePicker
-                    Grid.Column="1"
+                     Grid.Column="1"
                     Grid.Row="3"
                     Format="dd/MM/yyyy"
                     Date="{Binding Fecha, Mode = TwoWay}">

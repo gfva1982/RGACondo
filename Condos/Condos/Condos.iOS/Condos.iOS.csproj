@@ -118,6 +118,7 @@
     <BundleResource Include="Resources\ic_thumb_up.png" />
     <BundleResource Include="Resources\ic_perm_contact_calendar.png" />
     <BundleResource Include="Resources\ic_add_circle_outline.png" />
+    <BundleResource Include="Resources\add_Calendar.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
