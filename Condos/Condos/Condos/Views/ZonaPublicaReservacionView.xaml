@@ -3,9 +3,112 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="Condos.Views.ZonaPublicaReservacionView"
      BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="{Binding Titulo}"
+    Title="Reservación"
     Padding="20"
     BackgroundColor="#BFA288">
+
+    
 	<ContentPage.Content>
-	</ContentPage.Content>
+        <StackLayout 
+            BindingContext="{Binding ZonaPublicaReservacion}"
+            Padding="8"
+            Spacing="20"
+            BackgroundColor="#F2F1DF">
+            <Grid
+                Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    Grid.Row="0"
+
+                    Text="Fecha:">
+                </Label>
+
+                <DatePicker
+                    Grid.Row="0"
+                    Grid.Column="1"
+                     Date="{Binding Fecha, Mode = TwoWay}"
+                    Format="dd/MM/yyyy">
+                   
+                </DatePicker>
+
+
+                 <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="1"
+
+                    Text="Hora Inicio:">
+                </Label>
+
+                <TimePicker
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Time="{Binding HoraInicio, Mode = TwoWay}"
+                ></TimePicker>
+
+
+                 <Label
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="2"
+                    Text="Hora Final">
+
+                </Label>
+
+                <TimePicker
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Time="{Binding HoraFinal, Mode = TwoWay}"
+                ></TimePicker>
+
+                <Label
+                    
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    
+                    Grid.Row="3"
+                    Text="Comentario:">
+
+                </Label>
+
+                <Entry
+                Grid.Row="3"
+                Grid.Column="1"
+                    Text="{Binding Comentario, Mode=TwoWay}"
+                ></Entry>
+               </Grid>
+
+           
+
+             <ActivityIndicator
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
+            </ActivityIndicator>
+             <Button
+                VerticalOptions="EndAndExpand"
+                Command="{Binding ReservarZonaCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,25"
+                BackgroundColor="Navy"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Reservar"
+                TextColor="White">
+            </Button>
+            
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

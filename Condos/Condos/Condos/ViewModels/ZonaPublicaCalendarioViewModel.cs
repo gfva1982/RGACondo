@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
 using Condos.Models;
 using Condos.Services;
+using GalaSoft.MvvmLight.Command;
 
 namespace Condos.ViewModels
 {
@@ -11,6 +13,13 @@ namespace Condos.ViewModels
         private Inmueble inmueble;
 
         #region Properties
+
+        public int ZonaId
+        {
+            get;
+            set;
+  
+        }
 
         public string Comentario
         {
@@ -104,15 +113,15 @@ namespace Condos.ViewModels
         string _imageFullPath;
         string _titulo;
         string _comentario;
+
+
         #endregion
 
         #region Service
         //DialogService dialogService;
         //ApiService apiService;
-        //NavigationService navigationService;
+        NavigationService navigationService;
         #endregion
-
-
 
         #region Constructor
         public ZonaPublicaCalendarioViewModel()
@@ -122,14 +131,53 @@ namespace Condos.ViewModels
         public ZonaPublicaCalendarioViewModel(Inmueble inmueble)
         {
             this.inmueble = inmueble;
-
+            ZonaId = inmueble.InmuebleID;
             ImageFullPath = inmueble.ImageFullPath;
             Title = inmueble.Descripcion;
             Comentario = inmueble.Comentario;
-            Calendario = new ObservableCollection<Models.Calendario>(inmueble.Calendario);
+            Calendario = new ObservableCollection<Calendario>(inmueble.Calendario.OrderBy(p => p.Fecha));
+            navigationService = new NavigationService();
+
+            instance = this;
         }
         #endregion
 
+        #region Events
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Commands
+        public ICommand ReservarZonaPublicaCommand
+        {
+            get
+            {
+                return new RelayCommand(GoReservarZonaPublica);
+            }
+        }
+
+        async void GoReservarZonaPublica()
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+
+            mainViewModel.ZonaPublicaReservacion = new ZonaPublicaReservacionViewModel(ZonaId);
+            await navigationService.Navigate("ZonaPublicaReservacionView");
+
+        }
+        #endregion
+
+
+        #region Singleton
+        static ZonaPublicaCalendarioViewModel instance;
+
+        public static ZonaPublicaCalendarioViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                return new ZonaPublicaCalendarioViewModel();
+            }
+
+            return instance;
+        }
+        #endregion
     }
 }

@@ -35,6 +35,10 @@ namespace Condos.Services
                     await Application.Current.MainPage.Navigation.PushAsync(new ZonaPublicaReservacionView());
                     break;
 
+                case "ContactenosView":
+                    await Application.Current.MainPage.Navigation.PushAsync(new ContactenosView());
+                    break;
+
 
             }
 

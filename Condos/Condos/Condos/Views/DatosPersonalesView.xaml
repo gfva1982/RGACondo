@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="Condos.Views.RegistrarInvitadosView"
+    x:Class="Condos.Views.DatosPersonalesView"
+   
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    Title="Registrar Invitado"
+    Title="Login"
     Padding="20"
     BackgroundColor="#BFA288">
 	<ContentPage.Content>
-        <StackLayout
-            BindingContext="{Binding RegistrarInvitados}"
-             
+          <StackLayout 
+            BindingContext="{Binding DatosPersonales}"
+            Padding="8"
+            Spacing="20"
             BackgroundColor="#F2F1DF">
-
-             <Label
-                TextColor="#BFA288"
-                FontAttributes="Bold"
-                FontSize="Large"
-                HorizontalOptions="Center"
-                Text="Registra Invitado">
-            </Label>
-
-            <Grid
+             <Grid
                 Margin="5,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -132,8 +125,6 @@
                 TextColor="White">
             </Button>
                
-            
-            
-        </StackLayout>
+            </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

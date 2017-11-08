@@ -106,6 +106,21 @@ namespace Condos.ViewModels
 
         }
 
+        public ICommand ContactenosCommand
+        {
+            get
+            {
+                return new RelayCommand(GoContactenos);
+            }
+        }
+
+        async void GoContactenos()
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Contactenos = new ContactenosViewModel();
+            await navigationService.Navigate("ContactenosView");
+        }
+
         #endregion
 
 

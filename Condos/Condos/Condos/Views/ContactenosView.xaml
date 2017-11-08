@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Condos.Views.ContactenosView"
+
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Login"
+    Padding="20"
+    BackgroundColor="#BFA288">
+	<ContentPage.Content>
+
+      <StackLayout
+            BindingContext="{Binding Contactenos}"
+             
+            BackgroundColor="#F2F1DF">
+
+             <Label
+                TextColor="#BFA288"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Registre su Comentario">
+            </Label>
+
+            <Label
+                    HorizontalOptions="StartAndExpand"
+                    Margin="10,10,0,0"
+                    Text="Comentario:">
+                </Label>
+            <Grid
+                Margin="5,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                   
+                </Grid.ColumnDefinitions>
+
+
+                <Editor
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    
+                    HeightRequest="200"
+                    WidthRequest="200"
+                ></Editor>
+
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="200"
+                    WidthRequest="200"
+                    Source="{Binding ImageSource, Mode = TwoWay}"
+                     >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                
+
+                
+                </Grid>
+
+
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
+            </ActivityIndicator>
+
+            <Button
+                VerticalOptions="EndAndExpand"
+                Command="{Binding EnviarComentariosCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,25"
+                BackgroundColor="Navy"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Enviar Comentarios"
+                TextColor="White">
+            </Button>
+               
+            
+            
+        </StackLayout>
+
+        
+
+	</ContentPage.Content>
+</ContentPage>
