@@ -20,10 +20,10 @@ namespace Condos.Services
        public async Task<string>ShowImageOptions()
         {
             return await Application.Current.MainPage.DisplayActionSheet("De donde desea obtener la imagen",
-                                                                        "Cancel",
+                                                                        "Cancelar",
                                                                         null,
-                                                                        "From Gallery",
-                                                                        "From Camera");
+                                                                        "Biblioteca",
+                                                                        "Cámara");
         }
     }
 }

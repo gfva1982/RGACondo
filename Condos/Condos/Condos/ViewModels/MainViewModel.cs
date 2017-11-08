@@ -51,6 +51,18 @@ namespace Condos.ViewModels
             set;
         }
 
+        public DatosPersonalesViewModel DatosPersonales
+        {
+            get;
+            set;
+        }
+
+        public ContactenosViewModel Contactenos
+        {
+            get;
+            set;
+        }
+
         public TokenResponse Token
 
         {

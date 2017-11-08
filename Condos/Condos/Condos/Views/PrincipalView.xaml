@@ -47,7 +47,7 @@
                 HeightRequest="46"
                 FontAttributes="Bold"
                 FontSize="Medium"
-                Text="Consulta de Áreas"
+                Text="Zonas Comunes"
                 TextColor="White"
                 >
             </Button>
@@ -62,6 +62,20 @@
                 FontAttributes="Bold"
                 FontSize="Medium"
                 Text="Invitados Autorizados"
+                TextColor="White"
+                >
+            </Button>
+
+                 <Button
+                Command="{Binding ContactenosCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Margin="50,10"
+                BackgroundColor="#4A89AA"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Contáctenos"
                 TextColor="White"
                 >
             </Button>
