@@ -71,15 +71,23 @@ namespace Condos.WebAPI.Controllers
         [ResponseType(typeof(CalendarioZonasPublicas))]
         public async Task<IHttpActionResult> PostCalendarioZonasPublicas(CalendarioZonasPublicas calendarioZonasPublicas)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                db.CalendarioZonasPublicas.Add(calendarioZonasPublicas);
+                await db.SaveChangesAsync();
+
+                return  CreatedAtRoute("DefaultApi", new { id = calendarioZonasPublicas.ZonaPublicaID }, calendarioZonasPublicas);
             }
+            catch (System.Exception _ex)
+            {
 
-            db.CalendarioZonasPublicas.Add(calendarioZonasPublicas);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = calendarioZonasPublicas.ZonaPublicaID }, calendarioZonasPublicas);
+               return BadRequest(_ex.Message);
+            }
         }
 
         // DELETE: api/CalendarioZonasPublicas/5
