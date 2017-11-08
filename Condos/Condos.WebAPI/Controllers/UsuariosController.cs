@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Condos.Entities;
+using Condos.WebAPI.Helpers;
 using Condos.WebAPI.Models;
 
 namespace Condos.WebAPI.Controllers
@@ -36,6 +38,45 @@ namespace Condos.WebAPI.Controllers
 
             return Ok(usuario);
         }
+
+        [HttpPost]
+        [Route("api/CondoComentarios")]
+        public  IHttpActionResult PostComentarios(ComentarioRequest pComentario)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                if (pComentario.ImageArray != null && pComentario.ImageArray.Length > 0)
+                {
+                    var stream = new MemoryStream(pComentario.ImageArray);
+                    var guid = Guid.NewGuid().ToString();
+                    var file = string.Format("{0}.jpg", guid);
+                    var folder = "~/Content/Images";
+                    var fullPath = string.Format("{0}/{1}", folder, file);
+
+                    var response = FilesHelper.UploadPhoto(stream, folder, file);
+
+                    if (response)
+                    {
+                        pComentario.FullPath = fullPath;
+
+                        FilesHelper.EnviarComentarios(pComentario);
+                    }
+                }
+
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
 
         // GET: api/InfoUsuario/5
         [HttpGet]
