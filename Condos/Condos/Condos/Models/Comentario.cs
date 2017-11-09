@@ -10,7 +10,7 @@ namespace Condos.Models
       
         }
 
-        public byte[] ImageFile
+        public byte[] ImageArray
         {
             get;
             set;

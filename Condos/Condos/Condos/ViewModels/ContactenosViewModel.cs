@@ -15,6 +15,41 @@ namespace Condos.ViewModels
     {
 
         #region Properties
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                if (_isEnabled != value)
+                {
+                    _isEnabled = value;
+                    PropertyChanged?.Invoke(this,
+                                            new PropertyChangedEventArgs(nameof(IsEnabled)));
+
+                }
+            }
+        }
+
+        public bool IsRunning
+        {
+            get
+            {
+                return _isRunning;
+            }
+            set
+            {
+                if (_isRunning != value)
+                {
+                    _isRunning = value;
+                    PropertyChanged?.Invoke(this,
+                                            new PropertyChangedEventArgs(nameof(IsRunning)));
+
+                }
+            }
+        }
         public ImageSource ImageSource
         {
             set
@@ -50,45 +85,17 @@ namespace Condos.ViewModels
             }
         }
 
-        public bool IsRunning
-        {
-            set
-            {
-                if (_isRunning != value)
-                {
-                    _isRunning = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(IsRunning));
-                }
-            }
-            get
-            {
-                return _isRunning;
-            }
-        }
-
-        public bool IsEnabled
-        {
-            set
-            {
-                if (_isEnabled != value)
-                {
-                    _isEnabled = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(IsEnabled));
-                }
-            }
-            get
-            {
-                return _isEnabled;
-            }
-        }
+       
         #endregion
 
         #region Attributes
         string _comentario;
         MediaFile _file;
         ImageSource _imageSource;
+
         bool _isRunning;
         bool _isEnabled;
+       
         #endregion
 
         #region Servicios
@@ -99,6 +106,8 @@ namespace Condos.ViewModels
         #region Constructor
         public ContactenosViewModel()
         {
+            IsEnabled = true;
+            IsRunning = false;
             dialogService = new DialogService();
             apiService = new ApiService();
             ImageSource = "noimagen";
@@ -150,13 +159,31 @@ namespace Condos.ViewModels
                 _file.Dispose();
             }
 
-            var _comentario = new Comentario
+
+           
+            var response = await apiService.Post<Comentario>("http://condoscrwebapi.azurewebsites.net", 
+                                                             "api", 
+                                                             "/CondoComentarios", 
+                                                             new Comentario{
+                                                                 Detalle = Comentario,
+                                                                 ImageArray = imageArray,
+                                                                 CorreoElectronico = mainViewModel.Token.UserName,
+                                                                 Inquilino = mainViewModel.InfoUsuario.NombreCompleto + " " + mainViewModel.InfoUsuario.PrimerApellido
+                                                                });
+
+
+            if (!response.IsSuccess)
             {
-                 Detalle = Comentario,
-                ImageFile = imageArray
-            };
+                IsRunning = false;
+                IsEnabled = true;
+                await dialogService.ShowMessage("Error", response.Message);
+                return;
+            }
 
-
+            IsRunning = false;
+            IsEnabled = true;
+            await dialogService.ShowMessage("", "El comentario fue enviado exitosamente");
+            return;
 
         }
 
@@ -193,7 +220,11 @@ namespace Condos.ViewModels
                 }
                 else
                 {
-                    _file = await CrossMedia.Current.PickPhotoAsync();  
+                    _file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+                    {
+                        PhotoSize = PhotoSize.Small,
+                        MaxWidthHeight = 200000
+                    });  
                 }
              }
             else
