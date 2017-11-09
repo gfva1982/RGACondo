@@ -7,7 +7,7 @@ namespace Condos.WebAPI.Models
         {
             get;
             set;
-      
+
         }
 
         public byte[] ImageArray
@@ -20,7 +20,7 @@ namespace Condos.WebAPI.Models
         {
             get;
             set;
-        
+
         }
 
         public string CorreoElectronico
@@ -29,7 +29,7 @@ namespace Condos.WebAPI.Models
             set;
         }
 
-        public string FullPath;
+        public string FullPath
         {
             get;
             set;

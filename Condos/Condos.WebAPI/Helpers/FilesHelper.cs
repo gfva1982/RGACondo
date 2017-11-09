@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
 using Condos.WebAPI.Models;
+using System.Net;
 
 namespace Condos.WebAPI.Helpers
 {
@@ -22,7 +23,7 @@ namespace Condos.WebAPI.Helpers
 
 
 
-                File.Delete();
+               
 
             }
             catch (Exception ex)
@@ -33,12 +34,12 @@ namespace Condos.WebAPI.Helpers
             return true;
         }
 
-        public static  bool EnviarComentarios(ComentarioRequest pComentario)
+        public static  bool EnviarComentarios(ComentarioRequest pComentario, Stream pImagen)
         {
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("geovega1982@gmail.com");
             mail.To.Add("gvega@agt.cr");
-            mail.Subject = "Mensaje con imagen";
+            mail.Subject = string.Format("Comentario Enviado desde el app por : {0}",pComentario.Inquilino);
 
 
 
@@ -52,7 +53,8 @@ namespace Condos.WebAPI.Helpers
                              MediaTypeNames.Text.Plain);
 
 
-            var html = "<h2>Hola, te perdiste de la fiesta de anoche, mira la foto:</h2>" +
+            var html = "<h2>Comentario enviado desde la aplicación móvil</h2>" +
+                       string.Format("<h5>Comentario: {0} </h5>",pComentario.Detalle) +
               "<img src='cid:imagen' />";
 
             var htmlView =
@@ -62,9 +64,11 @@ namespace Condos.WebAPI.Helpers
 
 
 
-            var img =
-                        new LinkedResource(@"C:\fiesta.jpg",
-                        MediaTypeNames.Image.Jpeg);
+            var img = new LinkedResource(pImagen);
+
+
+                        //new LinkedResource(pComentario.FullPath,
+                        //MediaTypeNames.Image.Jpeg);
                         img.ContentId = "imagen";
 
             htmlView.LinkedResources.Add(img);
@@ -72,10 +76,20 @@ namespace Condos.WebAPI.Helpers
 
             mail.AlternateViews.Add(plainView);
             mail.AlternateViews.Add(htmlView);
+            mail.IsBodyHtml = true;
+
 
             // Y lo enviamos a través del servidor SMTP...
 
-            var smtp = new SmtpClient("smtp.nuestroservidor.com");
+            var smtp = new SmtpClient("smtp.live.com");
+            smtp.Port = 25;
+            smtp.UseDefaultCredentials = false;
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Credentials = new NetworkCredential("gfva1982@outlook.com", "Heredia2015");
+
+            
+
             smtp.Send(mail);
 
             return true;

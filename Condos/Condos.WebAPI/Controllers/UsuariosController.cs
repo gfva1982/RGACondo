@@ -53,19 +53,22 @@ namespace Condos.WebAPI.Controllers
                 if (pComentario.ImageArray != null && pComentario.ImageArray.Length > 0)
                 {
                     var stream = new MemoryStream(pComentario.ImageArray);
-                    var guid = Guid.NewGuid().ToString();
-                    var file = string.Format("{0}.jpg", guid);
-                    var folder = "~/Content/Images";
-                    var fullPath = string.Format("{0}/{1}", folder, file);
+                    //var guid = Guid.NewGuid().ToString();
+                    //var file = string.Format("{0}.jpg", guid);
+                    //var folder = "~/Content/Images";
+                    //var fullPath = string.Format("{0}/{1}", folder, file);
+                    //pComentario.FullPath = fullPath.Substring(1);
+                    //var response = FilesHelper.UploadPhoto(stream, folder, file);
 
-                    var response = FilesHelper.UploadPhoto(stream, folder, file);
-
-                    if (response)
+                    if (FilesHelper.EnviarComentarios(pComentario, stream))
                     {
-                        pComentario.FullPath = fullPath;
+                       
 
-                        FilesHelper.EnviarComentarios(pComentario);
+                        return Ok();
                     }
+                        
+
+                    return BadRequest("No se pudo gardar la Imagen");
                 }
 
                 return Ok(true);
